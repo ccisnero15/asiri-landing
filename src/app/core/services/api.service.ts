@@ -1,5 +1,6 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { shareReplay } from 'rxjs';
 import { environment } from '../../../environments/environment';
 
 export interface Product {
@@ -60,6 +61,9 @@ export class ApiService {
   private http = inject(HttpClient);
   private base = environment.apiUrl;
 
+  // Cached so Hero and AppComponent share one HTTP request
+  private businessInfo$ = this.http.get<BusinessInfo>(`${this.base}/api/business-info`).pipe(shareReplay(1));
+
   getProducts() {
     return this.http.get<Product[]>(`${this.base}/api/products`);
   }
@@ -73,7 +77,7 @@ export class ApiService {
   }
 
   getBusinessInfo() {
-    return this.http.get<BusinessInfo>(`${this.base}/api/business-info`);
+    return this.businessInfo$;
   }
 
   submitContact(data: ContactPayload) {

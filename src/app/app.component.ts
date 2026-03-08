@@ -1,5 +1,6 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { SeoService } from './core/services/seo.service';
+import { ApiService } from './core/services/api.service';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { HeroComponent } from './components/hero/hero.component';
 import { AboutComponent } from './components/about/about.component';
@@ -17,7 +18,7 @@ import { WhatsappButtonComponent } from './shared/components/whatsapp-button/wha
     ProductsComponent,
     ContactComponent,
     FooterComponent,
-    WhatsappButtonComponent
+    WhatsappButtonComponent,
   ],
   template: `
     <app-navbar />
@@ -30,19 +31,30 @@ import { WhatsappButtonComponent } from './shared/components/whatsapp-button/wha
     <app-footer />
     <app-whatsapp-button />
   `,
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
 })
 export class AppComponent implements OnInit {
   private seo = inject(SeoService);
+  private api = inject(ApiService);
 
   ngOnInit(): void {
-    this.seo.updateSeo({
-      title:        'Asiri | Huevos Frescos de Granja - Calidad Garantizada',
-      description:  'Asiri ofrece huevos frescos de granja con entrega directa. Huevos de corral, orgánicos y convencionales. Calidad garantizada en Lima, Perú.',
-      keywords:     'huevos frescos, huevos de corral, huevos orgánicos, huevos Lima, huevos Perú, Asiri',
-      ogImage:      'https://www.asiri.pe/assets/images/eggs-hero.webp',
-      ogUrl:        'https://www.asiri.pe',
-      canonicalUrl: 'https://www.asiri.pe'
+    // businessInfo$ is cached (shareReplay) — no duplicate HTTP request vs HeroComponent
+    this.api.getBusinessInfo().subscribe((info) => {
+      this.seo.updateSeo({
+        title: 'Huevos Asiri',
+        description:
+          'Asiri ofrece huevos frescos de granja con entrega directa. Huevos de corral, orgánicos y convencionales. Calidad garantizada en Salta, Argentina.',
+        keywords:
+          'huevos frescos, huevos de corral, huevos orgánicos, huevos Salta, huevos Argentina, Asiri',
+        ogImage: 'https://www.asiri.pe/assets/images/eggs-hero.webp',
+        ogImageAlt:
+          'Huevos frescos Asiri – calidad premium de campo, Salta Argentina',
+        ogUrl: 'https://www.asiri.pe',
+        canonicalUrl: 'https://www.asiri.pe',
+        phone: info.phone,
+        instagramUrl: info.instagram_url,
+        facebookUrl: info.facebook_url,
+      });
     });
   }
 }

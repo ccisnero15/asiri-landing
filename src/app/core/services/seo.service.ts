@@ -7,40 +7,79 @@ export interface SeoConfig {
   description: string;
   keywords?: string;
   ogImage?: string;
+  ogImageAlt?: string;
   ogUrl?: string;
   canonicalUrl?: string;
+  phone?: string;
+  instagramUrl?: string;
+  facebookUrl?: string;
 }
 
 @Injectable({ providedIn: 'root' })
 export class SeoService {
-  private meta     = inject(Meta);
+  private meta = inject(Meta);
   private titleSvc = inject(Title);
-  private doc      = inject(DOCUMENT);
+  private doc = inject(DOCUMENT);
 
   updateSeo(config: SeoConfig): void {
     this.titleSvc.setTitle(config.title);
 
+    // ── Standard ──────────────────────────────────────────────────────────────
     this.meta.updateTag({ name: 'description', content: config.description });
-    this.meta.updateTag({ name: 'keywords',    content: config.keywords ?? '' });
-    this.meta.updateTag({ name: 'robots',      content: 'index, follow' });
+    this.meta.updateTag({ name: 'keywords', content: config.keywords ?? '' });
+    this.meta.updateTag({ name: 'robots', content: 'index, follow' });
+    this.meta.updateTag({ name: 'author', content: 'Huevos Asiri' });
 
-    this.meta.updateTag({ property: 'og:type',        content: 'website' });
-    this.meta.updateTag({ property: 'og:title',       content: config.title });
-    this.meta.updateTag({ property: 'og:description', content: config.description });
-    this.meta.updateTag({ property: 'og:image',       content: config.ogImage ?? '' });
-    this.meta.updateTag({ property: 'og:url',         content: config.ogUrl ?? '' });
-    this.meta.updateTag({ property: 'og:locale',      content: 'es_PE' });
+    // ── Local SEO (Salta, Argentina) ──────────────────────────────────────────
+    this.meta.updateTag({ name: 'geo.region',    content: 'AR-A' });
+    this.meta.updateTag({ name: 'geo.placename', content: 'Salta, Argentina' });
 
-    this.meta.updateTag({ name: 'twitter:card',        content: 'summary_large_image' });
-    this.meta.updateTag({ name: 'twitter:title',       content: config.title });
-    this.meta.updateTag({ name: 'twitter:description', content: config.description });
-    this.meta.updateTag({ name: 'twitter:image',       content: config.ogImage ?? '' });
+    // ── Open Graph ────────────────────────────────────────────────────────────
+    this.meta.updateTag({ property: 'og:type', content: 'website' });
+    this.meta.updateTag({ property: 'og:site_name', content: 'Huevos Asiri' });
+    this.meta.updateTag({ property: 'og:title', content: config.title });
+    this.meta.updateTag({
+      property: 'og:description',
+      content: config.description,
+    });
+    this.meta.updateTag({
+      property: 'og:image',
+      content: config.ogImage ?? '',
+    });
+    this.meta.updateTag({ property: 'og:image:type', content: 'image/webp' });
+    this.meta.updateTag({ property: 'og:image:width', content: '1200' });
+    this.meta.updateTag({ property: 'og:image:height', content: '630' });
+    this.meta.updateTag({
+      property: 'og:image:alt',
+      content: config.ogImageAlt ?? config.description,
+    });
+    this.meta.updateTag({ property: 'og:url', content: config.ogUrl ?? '' });
+    this.meta.updateTag({ property: 'og:locale', content: 'es_PE' });
+
+    // ── Twitter Card ──────────────────────────────────────────────────────────
+    this.meta.updateTag({
+      name: 'twitter:card',
+      content: 'summary_large_image',
+    });
+    this.meta.updateTag({ name: 'twitter:title', content: config.title });
+    this.meta.updateTag({
+      name: 'twitter:description',
+      content: config.description,
+    });
+    this.meta.updateTag({
+      name: 'twitter:image',
+      content: config.ogImage ?? '',
+    });
+    this.meta.updateTag({
+      name: 'twitter:image:alt',
+      content: config.ogImageAlt ?? config.description,
+    });
 
     if (config.canonicalUrl) {
       this.setCanonical(config.canonicalUrl);
     }
 
-    this.injectJsonLd();
+    this.injectJsonLd(config);
   }
 
   private setCanonical(url: string): void {
@@ -53,37 +92,48 @@ export class SeoService {
     this.doc.head.appendChild(link);
   }
 
-  private injectJsonLd(): void {
+  private injectJsonLd(config: SeoConfig): void {
     const existing = this.doc.querySelector('#asiri-jsonld');
     if (existing) existing.remove();
 
-    const schema = {
+    const sameAs = [config.instagramUrl, config.facebookUrl].filter(
+      (u): u is string => !!u,
+    );
+
+    const schema: Record<string, unknown> = {
       '@context': 'https://schema.org',
       '@type': 'LocalBusiness',
       name: 'Asiri',
-      description: 'Huevos frescos de granja. Calidad garantizada, entrega directa al cliente.',
+      description:
+        'Huevos frescos de granja. Calidad garantizada, entrega directa al cliente.',
       url: 'https://www.asiri.pe',
-      telephone: '+51-XXX-XXX-XXX',
       priceRange: '$$',
       image: 'https://www.asiri.pe/assets/images/eggs-hero.webp',
       address: {
         '@type': 'PostalAddress',
-        addressLocality: 'Lima',
-        addressCountry: 'PE'
+        addressLocality: 'Salta',
+        addressRegion: 'Salta',
+        addressCountry: 'AR',
       },
       openingHoursSpecification: [
         {
           '@type': 'OpeningHoursSpecification',
-          dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+          dayOfWeek: [
+            'Monday',
+            'Tuesday',
+            'Wednesday',
+            'Thursday',
+            'Friday',
+            'Saturday',
+          ],
           opens: '08:00',
-          closes: '18:00'
-        }
+          closes: '18:00',
+        },
       ],
-      sameAs: [
-        'https://www.instagram.com/asiri.pe',
-        'https://www.facebook.com/asiri.pe'
-      ]
     };
+
+    if (config.phone) schema['telephone'] = config.phone;
+    if (sameAs.length) schema['sameAs'] = sameAs;
 
     const script = this.doc.createElement('script');
     script.setAttribute('type', 'application/ld+json');
