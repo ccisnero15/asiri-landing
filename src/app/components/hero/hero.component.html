@@ -1,0 +1,27 @@
+<section class="hero">
+  <div class="hero-content">
+    <span class="hero-badge">{{ businessInfo()?.hero_badge }}</span>
+    <h1 class="hero-headline">
+      {{ businessInfo()?.hero_headline }}
+      <span class="highlight">{{ businessInfo()?.hero_headline_highlight }}</span>
+    </h1>
+    <p class="hero-subtitle">{{ businessInfo()?.hero_subtitle }}</p>
+    <div class="hero-actions">
+      <button class="btn-primary" [appSmoothScroll]="'productos'">
+        Ver Productos
+      </button>
+      <button class="btn-secondary" [appSmoothScroll]="'contacto'">
+        Contáctanos
+      </button>
+    </div>
+  </div>
+  <div class="hero-image">
+    <img
+      ngSrc="/assets/images/logo-hero.png"
+      alt="Logo Asiri Huevos - Huevos frescos de granja"
+      width="520"
+      height="520"
+      priority
+    />
+  </div>
+</section>

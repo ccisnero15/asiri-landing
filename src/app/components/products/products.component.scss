@@ -1,0 +1,166 @@
+@use '../../../styles/variables' as v;
+@use '../../../styles/mixins' as m;
+
+.products {
+  background: v.$color-bg;
+  @include m.section-padding;
+}
+
+// ── Carousel wrapper ──────────────────────────────────────────────────────────
+
+.carousel {
+  display: flex;
+  align-items: center;
+  gap: v.$space-sm;
+}
+
+.carousel-arrow {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 2px solid v.$color-primary;
+  background: v.$color-white;
+  color: v.$color-primary-dark;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  box-shadow: v.$shadow-card;
+  transition: background 0.2s, color 0.2s;
+
+  &:hover:not(:disabled) {
+    background: v.$color-primary;
+    color: v.$color-white;
+  }
+
+  &:disabled {
+    opacity: 0.3;
+    cursor: default;
+    box-shadow: none;
+  }
+}
+
+// ── Animaciones de transición ─────────────────────────────────────────────────
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(48px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-48px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+.slide-next .product-card,
+.slide-prev .product-card {
+  animation-duration: 0.38s;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  animation-fill-mode: both;
+
+  &:nth-child(1) { animation-delay: 0s; }
+  &:nth-child(2) { animation-delay: 0.07s; }
+  &:nth-child(3) { animation-delay: 0.14s; }
+}
+
+.slide-next .product-card { animation-name: slideInRight; }
+.slide-prev .product-card { animation-name: slideInLeft; }
+
+// ── Grid (sin cambios respecto al original) ───────────────────────────────────
+
+.products-grid {
+  flex: 1;
+  min-width: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: v.$space-md;
+
+  @include m.respond-to(md) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.product-card {
+  @include m.card-base;
+  position: relative;
+  padding: 0;
+  overflow: hidden;
+}
+
+.product-badge {
+  position: absolute;
+  top: v.$space-sm;
+  right: v.$space-sm;
+  z-index: 1;
+  background: v.$color-secondary;
+  color: v.$color-white;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 4px v.$space-sm;
+  border-radius: v.$radius-xl;
+}
+
+.product-image-wrap {
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+  background: v.$color-primary-light;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+
+  &:hover img {
+    transform: scale(1.05);
+  }
+}
+
+.product-info {
+  padding: v.$space-md;
+
+  h3 {
+    margin-bottom: v.$space-xs;
+  }
+
+  p {
+    font-size: 0.9rem;
+    margin-bottom: v.$space-md;
+    line-height: 1.5;
+  }
+}
+
+.product-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: v.$space-sm;
+  flex-wrap: wrap;
+}
+
+.product-price {
+  font-weight: 700;
+  color: v.$color-primary-dark;
+  font-size: 0.95rem;
+}
+
+.btn-outline {
+  background: transparent;
+  color: v.$color-secondary-dark;
+  border: 2px solid v.$color-secondary;
+  border-radius: v.$radius-xl;
+  padding: 6px v.$space-md;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover {
+    background: v.$color-secondary;
+    color: v.$color-white;
+  }
+}

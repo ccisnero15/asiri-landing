@@ -1,0 +1,64 @@
+<section class="products">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">Catálogo</span>
+      <h2>Nuestros Productos</h2>
+      <p>Selecciona el tipo de huevo que mejor se adapta a tus necesidades.</p>
+    </div>
+
+    <div class="carousel">
+      <button
+        class="carousel-arrow"
+        (click)="prev()"
+        [disabled]="currentSlide() === 0"
+        aria-label="Anterior"
+      >
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+      </button>
+
+      <div class="products-grid"
+           [class.slide-next]="direction() === 'next'"
+           [class.slide-prev]="direction() === 'prev'"
+      >
+        @for (product of visibleProducts(); track product.name) {
+          <article class="product-card">
+            @if (product.badge) {
+              <span class="product-badge">{{ product.badge }}</span>
+            }
+            <div class="product-image-wrap">
+              <img
+                [ngSrc]="product.image_url"
+                [alt]="product.name + ' - Asiri Huevos Frescos'"
+                width="320"
+                height="220"
+              />
+            </div>
+            <div class="product-info">
+              <h3>{{ product.name }}</h3>
+              <p>{{ product.description }}</p>
+              <div class="product-footer">
+                <span class="product-price">{{ product.price }}</span>
+                <button class="btn-outline" [appSmoothScroll]="'contacto'">
+                  Pedir ahora
+                </button>
+              </div>
+            </div>
+          </article>
+        }
+      </div>
+
+      <button
+        class="carousel-arrow"
+        (click)="next()"
+        [disabled]="currentSlide() === totalSlides() - 1"
+        aria-label="Siguiente"
+      >
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <polyline points="9 6 15 12 9 18"></polyline>
+        </svg>
+      </button>
+    </div>
+  </div>
+</section>

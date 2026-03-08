@@ -1,0 +1,70 @@
+@use '../../../styles/variables' as v;
+@use '../../../styles/mixins' as m;
+
+.about {
+  background: v.$color-white;
+  @include m.section-padding;
+}
+
+.values-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: v.$space-md;
+  margin-bottom: v.$space-xl;
+
+  @include m.respond-to(md) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.value-card {
+  @include m.card-base;
+  text-align: center;
+
+  .value-icon {
+    font-size: 2.5rem;
+    display: block;
+    margin-bottom: v.$space-sm;
+  }
+
+  h3 {
+    margin-bottom: v.$space-xs;
+    color: v.$color-text-primary;
+  }
+
+  p {
+    font-size: 0.95rem;
+  }
+}
+
+.stats-bar {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: v.$space-md;
+  background: linear-gradient(135deg, v.$color-primary-light, v.$color-secondary-light);
+  border-radius: v.$radius-lg;
+  padding: v.$space-lg;
+
+  @include m.respond-to(md) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.stat-item {
+  text-align: center;
+
+  .stat-value {
+    display: block;
+    font-size: clamp(2rem, 4vw, 2.5rem);
+    font-weight: 800;
+    color: v.$color-primary-dark;
+    line-height: 1.2;
+  }
+
+  .stat-label {
+    display: block;
+    font-size: 0.875rem;
+    color: v.$color-text-secondary;
+    margin-top: v.$space-xs;
+  }
+}

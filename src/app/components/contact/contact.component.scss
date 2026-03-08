@@ -1,0 +1,199 @@
+@use '../../../styles/variables' as v;
+@use '../../../styles/mixins' as m;
+
+.contact {
+  background: v.$color-white;
+  @include m.section-padding;
+}
+
+.contact-layout {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: v.$space-xl;
+
+  @include m.respond-to(lg) {
+    grid-template-columns: 1.5fr 1fr;
+  }
+}
+
+.contact-form-wrap {
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: v.$space-md;
+  }
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: v.$space-xs;
+
+  label {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: v.$color-text-primary;
+  }
+
+  input, textarea {
+    padding: v.$space-sm;
+    border: 2px solid v.$color-border;
+    border-radius: v.$radius-sm;
+    font-size: 1rem;
+    color: v.$color-text-primary;
+    background: v.$color-bg;
+    transition: border-color 0.2s;
+    outline: none;
+    width: 100%;
+
+    &:focus {
+      border-color: v.$color-primary;
+    }
+
+    &::placeholder {
+      color: #9BADB4;
+    }
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+}
+
+.btn-submit {
+  align-self: flex-start;
+  background: v.$color-primary;
+  color: v.$color-white;
+  border: none;
+  border-radius: v.$radius-xl;
+  padding: v.$space-sm v.$space-xl;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+
+  &:hover {
+    background: v.$color-primary-dark;
+    transform: translateY(-2px);
+  }
+}
+
+.success-message {
+  @include m.card-base;
+  text-align: center;
+  padding: v.$space-xl;
+  background: v.$color-primary-light;
+  border: 2px solid v.$color-primary;
+
+  .success-icon {
+    font-size: 3rem;
+    display: block;
+    margin-bottom: v.$space-sm;
+  }
+
+  p {
+    font-size: 1.125rem;
+    color: v.$color-text-primary;
+    font-weight: 500;
+  }
+}
+
+.info-card {
+  @include m.card-base;
+  margin-bottom: v.$space-md;
+
+  h3 {
+    margin-bottom: v.$space-md;
+  }
+}
+
+.info-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: v.$space-sm;
+
+  li {
+    color: v.$color-text-secondary;
+    font-size: 0.95rem;
+
+    a {
+      color: v.$color-primary-dark;
+      text-decoration: none;
+      font-weight: 500;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+.schedule-item {
+  display: flex;
+  gap: v.$space-xs;
+  align-items: flex-start;
+}
+
+.schedule-icon {
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.schedule-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+
+  li {
+    color: v.$color-text-secondary;
+    font-size: 0.95rem;
+  }
+}
+
+.social-links {
+  h4 {
+    margin-bottom: v.$space-sm;
+    color: v.$color-text-primary;
+  }
+}
+
+.social-icons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: v.$space-sm;
+}
+
+.social-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: v.$space-xs v.$space-md;
+  border-radius: v.$radius-xl;
+  font-weight: 600;
+  font-size: 0.875rem;
+  text-decoration: none;
+  transition: opacity 0.2s, transform 0.2s;
+
+  &:hover {
+    opacity: 0.85;
+    transform: translateY(-2px);
+  }
+
+  &.instagram {
+    background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+    color: white;
+  }
+
+  &.facebook {
+    background: #1877f2;
+    color: white;
+  }
+
+  &.whatsapp {
+    background: #25D366;
+    color: white;
+  }
+}

@@ -1,0 +1,118 @@
+@use '../../../styles/variables' as v;
+@use '../../../styles/mixins' as m;
+
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: v.$space-xl;
+  align-items: center;
+  justify-content: center;
+  padding: calc(v.$space-xxl + 80px) v.$space-sm v.$space-xl;
+  background: linear-gradient(135deg, #FFFFFF 0%, v.$color-bg 30%, v.$color-primary-light 58%, v.$color-primary 100%);
+  text-align: center;
+
+  @include m.respond-to(lg) {
+    flex-direction: row;
+    text-align: left;
+    gap: v.$space-xxl;
+    padding: calc(v.$space-xxl + 80px) v.$space-lg v.$space-xl;
+  }
+}
+
+.hero-content {
+  max-width: 600px;
+}
+
+.hero-badge {
+  display: inline-block;
+  background: v.$color-secondary;
+  color: v.$color-white;
+  border-radius: v.$radius-xl;
+  padding: 4px v.$space-sm;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: v.$space-sm;
+}
+
+.hero-headline {
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 800;
+  line-height: 1.1;
+  color: v.$color-text-primary;
+  margin-bottom: v.$space-md;
+
+  .highlight {
+    color: v.$color-primary-dark;
+    display: block;
+  }
+}
+
+.hero-subtitle {
+  font-size: 1.125rem;
+  color: v.$color-text-secondary;
+  max-width: 520px;
+  margin-bottom: v.$space-lg;
+  line-height: 1.7;
+
+  @include m.respond-to(lg) {
+    margin-bottom: v.$space-lg;
+  }
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: v.$space-sm;
+  justify-content: center;
+
+  @include m.respond-to(lg) {
+    justify-content: flex-start;
+  }
+}
+
+.btn-primary {
+  background: v.$color-primary;
+  color: v.$color-white;
+  border: none;
+  border-radius: v.$radius-xl;
+  padding: v.$space-sm v.$space-lg;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+
+  &:hover {
+    background: v.$color-primary-dark;
+    transform: translateY(-2px);
+  }
+}
+
+.btn-secondary {
+  background: transparent;
+  color: v.$color-primary-dark;
+  border: 2px solid v.$color-primary;
+  border-radius: v.$radius-xl;
+  padding: v.$space-sm v.$space-lg;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover {
+    background: v.$color-primary;
+    color: v.$color-white;
+  }
+}
+
+.hero-image {
+  max-width: 440px;
+  width: 100%;
+
+  img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 6px 24px rgba(0, 0, 0, 0.18));
+  }
+}

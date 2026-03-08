@@ -1,0 +1,114 @@
+@use '../../../styles/variables' as v;
+@use '../../../styles/mixins' as m;
+
+.footer {
+  background: v.$color-text-primary;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.footer-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: v.$space-xl v.$space-sm;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: v.$space-xl;
+
+  @include m.respond-to(md) {
+    grid-template-columns: 2fr 1fr 1fr;
+    padding: v.$space-xl v.$space-lg;
+  }
+}
+
+.footer-brand {
+  .footer-logo {
+    margin-bottom: v.$space-sm;
+  }
+
+  .footer-logo-img {
+    height: 36px;
+    width: auto;
+    filter: drop-shadow(0 0 1px rgba(0, 0, 0, 0.6));
+  }
+
+  p {
+    color: rgba(255, 255, 255, 0.6);
+    max-width: 320px;
+    line-height: 1.7;
+    font-size: 0.9rem;
+  }
+}
+
+.footer-links {
+  h4 {
+    color: v.$color-white;
+    margin-bottom: v.$space-md;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: v.$space-sm;
+
+    a {
+      color: rgba(255, 255, 255, 0.6);
+      text-decoration: none;
+      cursor: pointer;
+      font-size: 0.9rem;
+      transition: color 0.2s;
+
+      &:hover {
+        color: v.$color-primary;
+      }
+    }
+  }
+}
+
+.footer-social {
+  h4 {
+    color: v.$color-white;
+    margin-bottom: v.$space-md;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+}
+
+.social-links {
+  display: flex;
+  flex-direction: column;
+  gap: v.$space-sm;
+}
+
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: rgba(255, 255, 255, 0.6);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.2s;
+
+  svg { flex-shrink: 0; }
+
+  &:hover {
+    color: v.$color-primary-light;
+  }
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding: v.$space-md v.$space-sm;
+  text-align: center;
+  max-width: 1280px;
+  margin: 0 auto;
+
+  p {
+    color: rgba(255, 255, 255, 0.4);
+    font-size: 0.875rem;
+  }
+}

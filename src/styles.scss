@@ -1,1 +1,52 @@
-/* You can add global styles to this file, and also import other style files */
+@use 'styles/reset';
+@use 'styles/variables' as v;
+@use 'styles/typography';
+@use 'styles/animations';
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  font-family: v.$font-family-base;
+  background-color: v.$color-bg;
+  color: v.$color-text-primary;
+  line-height: v.$line-height-base;
+  -webkit-font-smoothing: antialiased;
+}
+
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding-inline: v.$space-sm;
+
+  @media (min-width: v.$bp-md) { padding-inline: v.$space-lg; }
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: v.$space-xl;
+
+  h2 {
+    margin: v.$space-xs 0 v.$space-sm;
+  }
+
+  p {
+    font-size: 1.125rem;
+    max-width: 600px;
+    margin-inline: auto;
+  }
+}
+
+.section-tag {
+  display: inline-block;
+  color: v.$color-secondary-dark;
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  background: v.$color-secondary-light;
+  padding: 4px v.$space-sm;
+  border-radius: v.$radius-xl;
+}

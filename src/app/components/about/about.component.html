@@ -1,0 +1,32 @@
+<section class="about">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">Nuestra Historia</span>
+      <h2>Quiénes somos</h2>
+      <p>
+        Somos una familia granjera de tres generaciones, apasionados por
+        criar aves en libertad y ofrecer huevos frescos de la más alta calidad.
+        Desde nuestros campos hasta tu mesa, cuidamos cada detalle.
+      </p>
+    </div>
+
+    <div class="values-grid">
+      @for (value of values(); track value.title) {
+        <div class="value-card">
+          <span class="value-icon">{{ value.icon }}</span>
+          <h3>{{ value.title }}</h3>
+          <p>{{ value.description }}</p>
+        </div>
+      }
+    </div>
+
+    <div class="stats-bar">
+      @for (stat of stats(); track stat.label) {
+        <div class="stat-item">
+          <span class="stat-value">{{ stat.value }}</span>
+          <span class="stat-label">{{ stat.label }}</span>
+        </div>
+      }
+    </div>
+  </div>
+</section>
