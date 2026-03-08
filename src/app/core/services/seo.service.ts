@@ -106,9 +106,9 @@ export class SeoService {
       name: 'Asiri',
       description:
         'Huevos frescos de granja. Calidad garantizada, entrega directa al cliente.',
-      url: 'https://www.asiri.pe',
+      url: 'https://huevos-asiri.vercel.app',
       priceRange: '$$',
-      image: 'https://www.asiri.pe/assets/images/eggs-hero.webp',
+      image: 'https://huevos-asiri.vercel.app/assets/images/eggs-hero.webp',
       address: {
         '@type': 'PostalAddress',
         addressLocality: 'Salta',

@@ -46,11 +46,11 @@ export class AppComponent implements OnInit {
           'Asiri ofrece huevos frescos de granja con entrega directa. Huevos de corral, orgánicos y convencionales. Calidad garantizada en Salta, Argentina.',
         keywords:
           'huevos frescos, huevos de corral, huevos orgánicos, huevos Salta, huevos Argentina, Asiri',
-        ogImage: 'https://www.asiri.pe/assets/images/eggs-hero.webp',
+        ogImage: 'https://huevos-asiri.vercel.app/assets/images/eggs-hero.webp',
         ogImageAlt:
           'Huevos frescos Asiri – calidad premium de campo, Salta Argentina',
-        ogUrl: 'https://www.asiri.pe',
-        canonicalUrl: 'https://www.asiri.pe',
+        ogUrl: 'https://huevos-asiri.vercel.app',
+        canonicalUrl: 'https://huevos-asiri.vercel.app',
         phone: info.phone,
         instagramUrl: info.instagram_url,
         facebookUrl: info.facebook_url,

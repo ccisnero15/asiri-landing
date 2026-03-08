@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.asiri.pe/sitemap.xml
+Sitemap: https://huevos-asiri.vercel.app/sitemap.xml
