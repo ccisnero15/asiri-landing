@@ -99,22 +99,34 @@ src/
 
 ### 4.4 Products (Productos)
 - Grid de 3 tarjetas: Convencionales, De Corral (badge "Más Popular"), Orgánicos (badge "Premium")
-- Cada card: imagen con `NgOptimizedImage` lazy, nombre, descripción, precio, botón "Pedir ahora" → contacto
+- Cada card: imagen con `NgOptimizedImage` lazy, nombre, descripción, peso del huevo, botón "Pedir ahora" → contacto
+- El campo `price` fue eliminado. Se muestra `weight` (ej: `"60g por huevo"`) en el footer de la card, donde antes estaba el precio
+- Mostrar `weight` con un ícono de balanza (SVG inline) para contexto visual rápido
 - Fondo sección violeta suave `#F8F5FF`
 
-### 4.5 Contact (Contacto)
+### 4.5 Supplies (Almacén)
+- Sección `id="almacen"` ubicada entre Productos y Contacto
+- Fondo verde pastel `$color-primary-light` para diferenciarse de la sección de huevos
+- Pills de categoría arriba del grid (filtro reactivo con signals). Solo se muestran si hay más de una categoría
+- Grid: 2 columnas en mobile, 4 en desktop
+- Cada tarjeta: emoji en círculo blanco, nombre, descripción (incluye tipo de venta: unidad/fardo), botón "Consultar"
+- Sin imágenes — se usa emoji almacenado en el campo `icon` de la DB (cambia de marca frecuentemente, gestionar fotos no es práctico)
+- Botón "Consultar" abre WhatsApp con mensaje pre-llenado: `"Hola! Quisiera consultar sobre: {nombre}"`
+- `whatsapp_number` obtenido de `businessInfo` vía `ApiService` (misma llamada cacheada de `shareReplay`)
+
+### 4.6 Contact (Contacto)
 - Layout 2 columnas: formulario + sidebar info
 - Formulario: nombre, email, teléfono, mensaje (con `FormsModule` + `ngModel`)
 - Submit abre WhatsApp con mensaje pre-llenado (sin backend)
 - Signal `submitted` para mostrar mensaje de éxito
 - Sidebar: teléfono, email, dirección, horario, links a Instagram y Facebook
 
-### 4.6 Footer
+### 4.7 Footer
 - 3 columnas: brand + descripción, navegación, redes sociales
 - Fondo oscuro `#2D3436` para contraste
 - Copyright dinámico con año actual
 
-### 4.7 WhatsApp FAB
+### 4.8 WhatsApp FAB
 - Botón flotante fixed bottom-right, aparece tras scroll > 300px
 - Abre chat WhatsApp con mensaje pre-llenado
 - Animación pulse en el shadow

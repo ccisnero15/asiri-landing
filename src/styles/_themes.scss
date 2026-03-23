@@ -1,0 +1,31 @@
+// ── Theme tokens — Asiri ──────────────────────────────────────────────────────
+// Los colores de marca (verde, violeta, amarillo) son estables en ambos temas.
+// Solo se adaptan fondos, superficies, texto, bordes y sombras.
+
+:root {
+  --color-bg:               #F8FAF7;
+  --color-surface:          #FFFFFF;
+  --color-surface-primary:  #C8DCC8;
+  --color-surface-secondary:#EDE7F6;
+  --color-primary-dark:     #3E6840;   // texto de acento sobre fondo claro
+  --color-text-primary:     #2D3436;
+  --color-text-secondary:   #636E72;
+  --color-border:           #D4E4D4;
+  --color-footer-bg:        #2D3436;   // footer siempre oscuro
+  --shadow-card:            0 4px 24px rgba(91, 138, 91, 0.18);
+  --shadow-hover:           0 8px 40px rgba(91, 138, 91, 0.32);
+}
+
+html.dark {
+  --color-bg:               #111A11;
+  --color-surface:          #192419;
+  --color-surface-primary:  #1C2E1C;
+  --color-surface-secondary:#1E1530;
+  --color-primary-dark:     #6AAD6A;   // verde más claro para contraste sobre oscuro
+  --color-text-primary:     #E8F0E8;
+  --color-text-secondary:   #8FA48F;
+  --color-border:           #2A3E2A;
+  --color-footer-bg:        #0F1A0F;   // footer aún más oscuro que el bg
+  --shadow-card:            0 4px 24px rgba(0, 0, 0, 0.5);
+  --shadow-hover:           0 8px 40px rgba(0, 0, 0, 0.7);
+}

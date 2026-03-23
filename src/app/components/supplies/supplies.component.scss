@@ -1,0 +1,104 @@
+@use '../../../styles/variables' as v;
+@use '../../../styles/mixins' as m;
+
+.supplies {
+  background: v.$color-surface;
+  @include m.section-padding;
+}
+
+// ── Category filter pills ──────────────────────────────────────────────────────
+
+.filter-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: v.$space-xs;
+  margin-bottom: v.$space-lg;
+}
+
+.pill {
+  padding: 6px v.$space-md;
+  border-radius: v.$radius-xl;
+  border: 2px solid v.$color-secondary;
+  background: transparent;
+  color: v.$color-secondary-dark;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+
+  &.active,
+  &:hover {
+    background: v.$color-secondary;
+    color: v.$color-white;
+  }
+}
+
+// ── Grid ──────────────────────────────────────────────────────────────────────
+
+.supplies-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: v.$space-md;
+
+  @include m.respond-to(md) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+// ── Card ──────────────────────────────────────────────────────────────────────
+
+.supply-card {
+  @include m.card-base;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: v.$space-md;
+  gap: v.$space-sm;
+}
+
+.supply-icon {
+  font-size: 2rem;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: v.$color-white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: v.$shadow-card;
+}
+
+.supply-info {
+  flex: 1;
+
+  h3 {
+    font-size: 0.95rem;
+    margin-bottom: v.$space-xs;
+  }
+
+  p {
+    font-size: 0.8rem;
+    color: v.$color-text-secondary;
+    line-height: 1.4;
+  }
+}
+
+.btn-consult {
+  display: inline-block;
+  background: transparent;
+  color: v.$color-secondary-dark;
+  border: 2px solid v.$color-secondary;
+  border-radius: v.$radius-xl;
+  padding: 6px v.$space-md;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s;
+
+  &:hover {
+    background: v.$color-secondary;
+    color: v.$color-white;
+  }
+}

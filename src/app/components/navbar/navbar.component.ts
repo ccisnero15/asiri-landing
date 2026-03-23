@@ -1,6 +1,7 @@
 import { Component, inject, signal, HostListener } from '@angular/core';
 import { DOCUMENT, NgOptimizedImage } from '@angular/common';
 import { SmoothScrollDirective } from '../../shared/directives/smooth-scroll.directive';
+import { ThemeService } from '../../core/services/theme.service';
 
 interface NavLink {
   label: string;
@@ -15,6 +16,7 @@ interface NavLink {
 })
 export class NavbarComponent {
   private doc = inject(DOCUMENT);
+  theme = inject(ThemeService);
 
   isScrolled = signal(false);
   mobileMenuOpen = signal(false);
@@ -23,6 +25,7 @@ export class NavbarComponent {
     { label: 'Inicio',         targetId: 'inicio' },
     { label: 'Sobre Nosotros', targetId: 'sobre-nosotros' },
     { label: 'Productos',      targetId: 'productos' },
+    { label: 'Almacén',        targetId: 'almacen' },
     { label: 'Contacto',       targetId: 'contacto' }
   ];
 

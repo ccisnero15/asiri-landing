@@ -1,0 +1,50 @@
+<section class="supplies">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag">Almacén</span>
+      <h2>Más productos</h2>
+      <p>Además de huevos, encontrá azúcar, sal, café, papel y mucho más.</p>
+    </div>
+
+    @if (categories().length > 1) {
+      <div class="filter-pills">
+        <button
+          class="pill"
+          [class.active]="activeCategory() === null"
+          (click)="setCategory(null)"
+        >
+          Todos
+        </button>
+        @for (cat of categories(); track cat) {
+          <button
+            class="pill"
+            [class.active]="activeCategory() === cat"
+            (click)="setCategory(cat)"
+          >
+            {{ cat }}
+          </button>
+        }
+      </div>
+    }
+
+    <div class="supplies-grid">
+      @for (supply of filteredSupplies(); track supply.id) {
+        <article class="supply-card">
+          <div class="supply-icon">{{ supply.icon }}</div>
+          <div class="supply-info">
+            <h3>{{ supply.name }}</h3>
+            <p>{{ supply.description }}</p>
+          </div>
+          <a
+            class="btn-consult"
+            [href]="whatsappUrl(supply.name)"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Consultar
+          </a>
+        </article>
+      }
+    </div>
+  </div>
+</section>

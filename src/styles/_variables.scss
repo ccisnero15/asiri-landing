@@ -1,24 +1,25 @@
 // ── Color Palette — Asiri Huevos Brand ────────────────────────────────────────
-// Verde salvia (fondo del logo)
+// Colores de marca: estáticos, no cambian con el tema
 $color-primary:        #5B8A5B;
-$color-primary-dark:   #3E6840;
-$color-primary-light:  #C8DCC8;
-
-// Amarillo yema de huevo (acento del logo)
 $color-accent:         #E8B420;
 $color-accent-dark:    #C49010;
 $color-accent-light:   #FDF0C0;
-
-// Morado secundario (conservado)
 $color-secondary:      #C9B8E8;
 $color-secondary-dark: #A88FD4;
-$color-secondary-light:#EDE7F6;
+$color-white:          #FFFFFF;   // blanco puro — usar solo para texto sobre fondos de color
 
-$color-white:          #FFFFFF;
-$color-bg:             #F8FAF7;
-$color-text-primary:   #2D3436;
-$color-text-secondary: #636E72;
-$color-border:         #D4E4D4;
+// Tokens dinámicos: apuntan a CSS custom properties (se adaptan en modo oscuro)
+$color-primary-dark:     var(--color-primary-dark);
+$color-bg:               var(--color-bg);
+$color-footer-bg:        var(--color-footer-bg);
+$color-surface:          var(--color-surface);          // fondos de cards y secciones
+$color-primary-light:    var(--color-surface-primary);
+$color-secondary-light:  var(--color-surface-secondary);
+$color-text-primary:     var(--color-text-primary);
+$color-text-secondary:   var(--color-text-secondary);
+$color-border:           var(--color-border);
+$shadow-card:            var(--shadow-card);
+$shadow-hover:           var(--shadow-hover);
 
 // ── Typography ────────────────────────────────────────────────────────────────
 $font-family-base: 'Inter', system-ui, sans-serif;
@@ -39,11 +40,8 @@ $bp-md:  768px;
 $bp-lg:  1024px;
 $bp-xl:  1280px;
 
-// ── Radii & Shadows ───────────────────────────────────────────────────────────
+// ── Radii ─────────────────────────────────────────────────────────────────────
 $radius-sm:  8px;
 $radius-md:  16px;
 $radius-lg:  24px;
 $radius-xl:  32px;
-
-$shadow-card: 0 4px 24px rgba(91, 138, 91, 0.18);
-$shadow-hover: 0 8px 40px rgba(91, 138, 91, 0.32);

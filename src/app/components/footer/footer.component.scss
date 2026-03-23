@@ -2,7 +2,7 @@
 @use '../../../styles/mixins' as m;
 
 .footer {
-  background: v.$color-text-primary;
+  background: v.$color-footer-bg;
   color: rgba(255, 255, 255, 0.8);
 }
 
@@ -96,7 +96,7 @@
   svg { flex-shrink: 0; }
 
   &:hover {
-    color: v.$color-primary-light;
+    color: v.$color-primary;
   }
 }
 

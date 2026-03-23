@@ -2,7 +2,7 @@
 @use '../../../styles/mixins' as m;
 
 .contact {
-  background: v.$color-white;
+  background: v.$color-bg;
   @include m.section-padding;
 }
 
@@ -51,7 +51,7 @@
     }
 
     &::placeholder {
-      color: #9BADB4;
+      color: v.$color-text-secondary;
     }
   }
 

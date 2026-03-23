@@ -7,9 +7,19 @@ export interface Product {
   id: string;
   name: string;
   description: string;
-  price: string;
+  weight: string;
   image_url: string;
   badge?: string;
+  is_active: boolean;
+  sort_order: number;
+}
+
+export interface Supply {
+  id: string;
+  name: string;
+  description: string;
+  category: string;
+  icon: string;
   is_active: boolean;
   sort_order: number;
 }
@@ -66,6 +76,10 @@ export class ApiService {
 
   getProducts() {
     return this.http.get<Product[]>(`${this.base}/api/products`);
+  }
+
+  getSupplies() {
+    return this.http.get<Supply[]>(`${this.base}/api/supplies`);
   }
 
   getAboutStats() {

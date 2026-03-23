@@ -14,14 +14,34 @@ Del `products.component.ts` — array hardcodeado con 3 productos.
 | `id` | uuid PK | auto |
 | `name` | text | "Huevos de Corral" |
 | `description` | text | "Gallinas con libre acceso..." |
-| `price` | text | "Desde S/ 14.00 x docena" |
+| `weight` | text | "60g por huevo" |
 | `image_url` | text | "/assets/images/products/eggs-free-range.webp" |
 | `badge` | text nullable | "Más Popular" / "Premium" / null |
 | `is_active` | bool | true |
 | `sort_order` | int | 1, 2, 3 |
 | `created_at` | timestamptz | auto |
 
-> Justificación: Los precios cambian, se pueden añadir/quitar productos, cambiar badges.
+> Justificación: El campo `price` fue eliminado — el negocio maneja precios por contacto directo (WhatsApp). Se agrega `weight` para diferenciar los tipos de huevo por su peso, dato clave para el cliente.
+
+---
+
+---
+
+### Tabla: `supplies`
+Productos de almacén que el negocio vende además de huevos (azúcar, sal, café, papel higiénico, etc.).
+
+| Campo | Tipo | Ejemplo |
+|---|---|---|
+| `id` | uuid PK | auto |
+| `name` | text | "Azúcar" |
+| `description` | text | "Venta por unidad o fardo de 10kg" |
+| `category` | text | "Endulzantes" / "Condimentos" / "Bebidas" / "Higiene" |
+| `icon` | text (emoji) | "🍬" / "🧂" / "☕" / "🧻" |
+| `is_active` | bool | true |
+| `sort_order` | int | 1, 2, 3... |
+| `created_at` | timestamptz | auto |
+
+> El campo `icon` almacena un emoji directamente. No se usan fotos: los productos cambian de marca frecuentemente y gestionar imágenes no es práctico. El emoji es suficiente para identificar visualmente el producto en la tarjeta.
 
 ---
 
@@ -106,6 +126,7 @@ Ambos buckets son públicos (URLs accesibles sin token). Los uploads se realizan
 
 ```
 GET  /api/products          → Lista de productos activos (ordenados por sort_order)
+GET  /api/supplies          → Lista de productos de almacén activos (ordenados por sort_order)
 GET  /api/about/stats       → Lista de stats (ordenados por sort_order)
 GET  /api/about/values      → Lista de valores del negocio
 GET  /api/business-info     → Objeto único con toda la config del negocio (hero, contacto, redes)
@@ -115,10 +136,15 @@ POST /api/contact           → Guardar formulario de contacto en DB
 ### Endpoints Privados (API key en header `X-API-Key`)
 
 ```
-# Productos
+# Productos (huevos)
 POST   /api/admin/products          → Crear producto
-PUT    /api/admin/products/{id}     → Editar producto (precio, descripción, etc.)
+PUT    /api/admin/products/{id}     → Editar producto (peso, descripción, etc.)
 DELETE /api/admin/products/{id}     → Desactivar (soft delete: is_active = false)
+
+# Almacén
+POST   /api/admin/supplies          → Crear producto de almacén
+PUT    /api/admin/supplies/{id}     → Editar producto de almacén
+DELETE /api/admin/supplies/{id}     → Desactivar (soft delete: is_active = false)
 
 # Stats y Values
 PUT    /api/admin/about/stats/{id}  → Actualizar stat

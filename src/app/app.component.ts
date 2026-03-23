@@ -5,6 +5,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { HeroComponent } from './components/hero/hero.component';
 import { AboutComponent } from './components/about/about.component';
 import { ProductsComponent } from './components/products/products.component';
+import { SuppliesComponent } from './components/supplies/supplies.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { WhatsappButtonComponent } from './shared/components/whatsapp-button/whatsapp-button.component';
@@ -16,6 +17,7 @@ import { WhatsappButtonComponent } from './shared/components/whatsapp-button/wha
     HeroComponent,
     AboutComponent,
     ProductsComponent,
+    SuppliesComponent,
     ContactComponent,
     FooterComponent,
     WhatsappButtonComponent,
@@ -26,6 +28,7 @@ import { WhatsappButtonComponent } from './shared/components/whatsapp-button/wha
       <section id="inicio"><app-hero /></section>
       <section id="sobre-nosotros"><app-about /></section>
       <section id="productos"><app-products /></section>
+      <section id="almacen"><app-supplies /></section>
       <section id="contacto"><app-contact /></section>
     </main>
     <app-footer />
@@ -45,8 +48,9 @@ export class AppComponent implements OnInit {
         description:
           'Asiri ofrece huevos frescos de granja con entrega directa. Huevos de corral, orgánicos y convencionales. Calidad garantizada en Salta, Argentina.',
         keywords:
-          'huevos frescos, huevos de corral, huevos orgánicos, huevos Salta, huevos Argentina, Asiri',
-        ogImage: 'https://huevos-asiri.vercel.app/assets/images/eggs-hero.webp',
+          'huevos frescos, huevos de corral, huevos orgánicos, huevos Salta, huevos Argentina, Asiri, hueveria Salta',
+        ogImage:
+          'https://huevos-asiri.vercel.app/assets/images/logo-navbar.jpg',
         ogImageAlt:
           'Huevos frescos Asiri – calidad premium de campo, Salta Argentina',
         ogUrl: 'https://huevos-asiri.vercel.app',

@@ -9,7 +9,7 @@
   align-items: center;
   justify-content: center;
   padding: calc(v.$space-xxl + 80px) v.$space-sm v.$space-xl;
-  background: linear-gradient(135deg, #FFFFFF 0%, v.$color-bg 30%, v.$color-primary-light 58%, v.$color-primary 100%);
+  background: linear-gradient(135deg, #FFFFFF 0%, #F8FAF7 30%, #C8DCC8 58%, #5B8A5B 100%);
   text-align: center;
 
   @include m.respond-to(lg) {
@@ -39,18 +39,18 @@
   font-size: clamp(2.5rem, 6vw, 4.5rem);
   font-weight: 800;
   line-height: 1.1;
-  color: v.$color-text-primary;
+  color: #2D3436;
   margin-bottom: v.$space-md;
 
   .highlight {
-    color: v.$color-primary-dark;
+    color: #3E6840;
     display: block;
   }
 }
 
 .hero-subtitle {
   font-size: 1.125rem;
-  color: v.$color-text-secondary;
+  color: #636E72;
   max-width: 520px;
   margin-bottom: v.$space-lg;
   line-height: 1.7;
@@ -83,14 +83,14 @@
   transition: background 0.2s, transform 0.2s;
 
   &:hover {
-    background: v.$color-primary-dark;
+    background: #3E6840;
     transform: translateY(-2px);
   }
 }
 
 .btn-secondary {
   background: transparent;
-  color: v.$color-primary-dark;
+  color: #3E6840;
   border: 2px solid v.$color-primary;
   border-radius: v.$radius-xl;
   padding: v.$space-sm v.$space-lg;

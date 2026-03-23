@@ -25,7 +25,7 @@
 }
 
 @mixin card-base {
-  background: v.$color-white;
+  background: v.$color-surface;
   border-radius: v.$radius-md;
   box-shadow: v.$shadow-card;
   padding: v.$space-lg;
