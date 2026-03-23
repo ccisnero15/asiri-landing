@@ -1,4 +1,4 @@
-<nav [class.scrolled]="isScrolled()">
+<nav [class.scrolled]="isScrolled()" [class.is-dark]="theme.isDark()">
   <div class="nav-container">
     <a class="logo" [appSmoothScroll]="'inicio'">
       <img ngSrc="/assets/images/logo-navbar.png" alt="Asiri Huevos" class="logo-img" width="160" height="38" priority />

@@ -162,6 +162,41 @@ nav {
   }
 }
 
+// ── Dark mode overrides ───────────────────────────────────────────────────────
+// Se usa nav.is-dark porque Angular añade [_ngcontent-xxx] a nav (está en el
+// template), lo que hace que estos selectores funcionen con la encapsulación.
+// html.dark directamente en SCSS de componente NO funciona porque Angular
+// añadiría [_ngcontent-xxx] a <html>, que nunca tiene ese atributo.
+
+// No-scrolled: navbar transparente sobre el hero (fondo siempre claro en ambos modos)
+// → textos y controles deben ser oscuros independientemente del tema
+nav.is-dark:not(.scrolled) {
+  .nav-links a {
+    color: v.$color-white;
+    &:hover { color: rgba(255, 255, 255, 0.75); }
+  }
+
+  .hamburger span {
+    background: v.$color-white;
+  }
+
+  .btn-theme {
+    color: v.$color-white;
+    border-color: rgba(255, 255, 255, 0.5);
+    &:hover {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: v.$color-white;
+    }
+  }
+}
+
+// Scrolled: fondo verde — ajuste del hover del CTA
+nav.is-dark.scrolled {
+  .btn-cta:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+}
+
 .mobile-menu {
   display: flex;
   flex-direction: column;

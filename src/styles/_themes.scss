@@ -3,6 +3,14 @@
 // Solo se adaptan fondos, superficies, texto, bordes y sombras.
 
 :root {
+  // Hero
+  --hero-gradient:     linear-gradient(135deg, #FFFFFF 0%, #F8FAF7 30%, #C8DCC8 58%, #5B8A5B 100%);
+  --hero-text:         #2D3436;
+  --hero-highlight:    #3E6840;
+  --hero-subtitle:     #636E72;
+  --hero-btn-color:    #3E6840;
+  --hero-btn-hover-bg: #3E6840;
+
   --color-bg:               #F8FAF7;
   --color-surface:          #FFFFFF;
   --color-surface-primary:  #C8DCC8;
@@ -17,6 +25,14 @@
 }
 
 html.dark {
+  // Hero
+  --hero-gradient:     linear-gradient(135deg, #111A11 0%, #192419 30%, #1C2E1C 58%, #2D4A2D 100%);
+  --hero-text:         #E8F0E8;
+  --hero-highlight:    #6AAD6A;
+  --hero-subtitle:     #8FA48F;
+  --hero-btn-color:    #6AAD6A;
+  --hero-btn-hover-bg: #2D4A2D;
+
   --color-bg:               #111A11;
   --color-surface:          #192419;
   --color-surface-primary:  #1C2E1C;
